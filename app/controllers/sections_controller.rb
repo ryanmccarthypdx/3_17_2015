@@ -24,6 +24,12 @@ class SectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @section = Section.find(params[:id])
+    @section.destroy
+    redirect_to sections_path
+  end
+
   def update
     @section= Section.find(params[:id])
     if @section.update(params[:section])
