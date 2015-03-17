@@ -1,23 +1,31 @@
 require 'rails_helper'
 
-describe "the edit a lesson process" do
-  it "edits a lesson" do
-    list = Section.create(:name => 'Knitting 101')
-    task = Lesson.create(:description => 'Knitting and romance', :section_id => section.id)
-    visit lesson_path(lesson)
-    click_on 'Edit'
-    fill_in 'Description', :with => 'Knitting and Kama Sutra'
-    click_on 'Update Lesson'
-    expect(page).to have_content 'successfully'
-  end
+  describe "the add a lesson process" do
+    it "adds a new lesson" do
+      section = Section.create(:title => 'Home stuff')
+      visit section_path(section)
+      click_on 'Add a lesson'
+      fill_in 'Title', :with => 'Hi'
+      fill_in 'Body', :with => 'Wash the dishes'
+      click_on 'Create Lesson'
+      expect(page).to have_content 'Hi'
+    end
 
-  it "gives error when no description is entered" do
-    section = Section.create(:name => 'Home stuff')
-    lesson = Lesson.create(:description => 'Wash the dishes', :list_id => list.id)
-    visit lesson_path(lesson)
-    click_on 'Edit'
-    fill_in 'Description', :with => ''
-    click_on 'Update Task'
-    expect(page).to have_content 'errors'
+    it "gives error when no title is entered" do
+      section = Section.create(:title => 'Home stuff')
+      visit section_path(section)
+      click_on 'Add a lesson'
+      fill_in 'Body', :with => 'Wash the dishes'
+      click_on 'Create Lesson'
+      expect(page).to have_content 'errors'
+    end
+
+    it "gives error when no body is entered" do
+      section = Section.create(:title => 'Home stuff')
+      visit section_path(section)
+      click_on 'Add a lesson'
+      fill_in 'Title', :with => 'Hi'      
+      click_on 'Create Lesson'
+      expect(page).to have_content 'errors'
+    end
   end
-end
