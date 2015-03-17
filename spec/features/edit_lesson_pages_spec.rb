@@ -4,7 +4,7 @@ describe "the edit a lesson process" do
 
   it "gives error when no title is entered" do
     section = Section.create(:title => 'Home stuff')
-    lesson = Lesson.create(:title => 'Hi', :body => 'hola', :section_id => section.id)
+    lesson = Lesson.create(:title => 'Hi', :body => 'hola', :section_id => section.id, :number => 1)
     visit section_path(section)
     page.first(:link, "Edit").click
     fill_in 'Title', :with => ''
@@ -14,7 +14,7 @@ describe "the edit a lesson process" do
 
   it "edits a section" do
     section = Section.create(:title => 'Knitting 101')
-    lesson = Lesson.create(:title => 'Hi', :body => 'hola', :section_id => section.id)
+    lesson = Lesson.create(:title => 'Hi', :body => 'hola', :section_id => section.id, :number => 1)
     visit section_path(section)
     page.first(:link, "Edit").click
     fill_in 'Title', :with => 'Knitting and Kama Sutra'

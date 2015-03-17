@@ -3,13 +3,11 @@ class Lesson < ActiveRecord::Base
   belongs_to :section
 
   def next
-    new_number = (number + 1)
-    Lesson.find_by(number: new_number)
+    Lesson.find_by(number: number + 1)
   end
 
   def previous
-    new_number = (number - 1)
-    Lesson.find_by(number: new_number)
+    Lesson.find_by(number: number - 1)
   end
 
 end
