@@ -1,0 +1,9 @@
+<%= render "layouts/errors", :object => @lesson %>
+
+<%= form_for [@section, @lesson] do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %><br>
+<%= f.label :body %>
+<%= f.text_area :body, size: "80x30" %><br>
+<%= f.submit %>
+<% end %>
