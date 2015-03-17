@@ -3,3 +3,10 @@
 <p>
   <%= @lesson.body %>
 </p>
+
+<% if @lesson.previous %>
+<%= link_to "previous lesson", section_lesson_path(@section, @lesson.previous) %>
+<% end %>
+<% if @lesson.next %>
+<%= link_to "next lesson", section_lesson_path(@section, @lesson.next) %>
+<% end %>

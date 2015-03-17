@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
   def create
     @section = Section.find(params[:section_id])
     @lesson = @section.lessons.new(lesson_params)
+    @lesson.number = @section.lessons.length + 1
     if @lesson.save
       redirect_to section_path(@section)
     else
@@ -31,7 +32,7 @@ class LessonsController < ApplicationController
     @lesson.destroy
     redirect_to section_path(@section)
   end
-  
+
   def update
     @section = Section.find(params[:section_id])
     @lesson = Lesson.find(params[:id])
@@ -43,6 +44,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :body)
+    params.require(:lesson).permit(:title, :body, :number)
   end
 end
