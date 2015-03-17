@@ -1,3 +1,4 @@
 class Lesson < ActiveRecord::Base
-  validates :name, :presence => true
+  validates :title, :body, :presence => true
+  
 end
